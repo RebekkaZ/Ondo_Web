@@ -1,0 +1,17 @@
+.AirConItem{
+    align-items: center;
+    margin-left:auto;
+    margin-right:auto;
+    width: 40%;
+    display: table;
+}
+#settingstable{
+    margin: 0 auto;
+    margin-top: 40px;
+}
+label{
+    text-align: left;
+}
+#temphumdiv{
+    flex-direction: row
+}
