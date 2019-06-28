@@ -4,15 +4,6 @@ import './Body.css'
 import 'react-tabs/style/react-tabs.css';
 import AirConItem from './AirConItem';
 import aircondata from '../data.json';
-import {getDevicePower} from '../apiCalls';
-import { unstable_createResource } from "react-cache";
-
-const fetcher = unstable_createResource(async id => {
-    const devicePower = await Promise.all([
-        getDevicePower(id).then(resp => resp)
-    ]);
-    return devicePower;
-  });
 
   const divStyleOn = {
     background: '#CFFAC6' 
@@ -56,19 +47,9 @@ class Body extends Component {
     render() {
       
                     
-        tabsList = this.aircons.map((e, i) => {
-            
-            var devicePower = fetcher.read(e.id);
-            console.log(e.id);
-            console.log(devicePower[0]);
-            if(devicePower[0]){
-                return <Tab style={ divStyleOn } key={e.id}>{e.name}</Tab>;
-            }else{
-                
-                return <Tab style={ divStyleOff } key={e.id}>{e.name}</Tab>;
-            }
-                
-        });
+        tabsList = this.aircons.map((e, i) => 
+            <Tab style={ divStyleOn } key={e.id}>{e.name}</Tab>                
+        );
         
 
         let tabsContent = this.aircons.map((e, i) => 
