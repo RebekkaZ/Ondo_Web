@@ -19,13 +19,9 @@ export async function getDevicePower(id){
     return response.data.value;
 }
 
-export async function getTemperature(id){
-    const response = await axios.get(url + id + '/temperature');
-    return response.data.value;
-}
-
-export async function getHumidity(id){
-    const response = await axios.get(url + id + '/humidity');
-    return response.data.value;
+export async function getRoomCondition(id){
+    const response = await axios.get(url + id + '/roomCondition');
+    var jsonResponse = JSON.parse(JSON.stringify(response.data));
+    return {id: id, temperature: jsonResponse.temperature.value, humidity: jsonResponse.humidity.value};
 }
 

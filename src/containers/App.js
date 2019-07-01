@@ -1,22 +1,21 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import Header from "../components/Header";
 import Body from '../components/Body';
 import '../App.css';
-require('dotenv').config();
+import { Provider } from 'react-redux'
+import configureStore from '../redux/configureStore'
+
+const store = configureStore();
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <Suspense fallback={<Loading />}>
-        <Body/>
-      </Suspense>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+          <Header/>
+            <Body/>
+      </div>
+    </Provider>
   );
-}
-
-function Loading(props) {
-  return <div>Loading...</div>;
 }
 
 export default App;
