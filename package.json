@@ -8,6 +8,7 @@
     "react": "^16.8.6",
     "react-cache": "^2.0.0-alpha.1",
     "react-dom": "^16.8.6",
+    "react-input-switch": "^2.1.25",
     "react-numeric-input": "^2.2.3",
     "react-redux": "^7.1.0",
     "react-scripts": "^3.0.1",

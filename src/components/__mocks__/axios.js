@@ -39,7 +39,3 @@ function fetchStatus(){
 axiosMock.get.mockImplementation(fetchTemperature).mockImplementationOnce(fetchHumidity).mockImplementationOnce(fetchStatus);
 
 module.exports = axiosMock;
-
-/*export default {
-  get: jest.fn(() => Promise.resolve({ data: {} }))
-};*/

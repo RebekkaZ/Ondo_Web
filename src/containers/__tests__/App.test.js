@@ -1,7 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import App from '../App';
-import { exportAllDeclaration } from '@babel/types';
 
 
 describe("App", function(){
@@ -12,6 +11,7 @@ describe("App", function(){
   
   it('renders Header without crashing', () => {
     let mountedHeader = mountedApp.find('Header');
+    expect(mountedHeader.length).toBe(1);
   });
 
   it('renders Body without crashing', () => {

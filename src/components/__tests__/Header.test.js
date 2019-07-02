@@ -1,18 +1,18 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import Header from '../Header';
 import AirConItem from '../AirConItem';
 
-describe("Header", function(){
+describe("Header", function () {
   it('renders div without crashing', () => {
-    let mountedApp = shallow(<div/>);
+    let mountedApp = shallow(<Header />);
+    const mountedlabel = mountedApp.find('div');
+    expect(mountedlabel.length).toBe(1);
   });
 
-  it('renders Header without crashing', () => {
-    let mountedHeader = shallow(<Header/>);
-  });
-
-    it('renders AirConItem without crashing', () => {
-    let mountedAirConItem = shallow(<AirConItem/>);
+  it('renders label without crashing', () => {
+    let mountedApp = shallow(<Header />);
+    const mountedlabel = mountedApp.find('label');
+    expect(mountedlabel.length).toBe(1);
   });
 })

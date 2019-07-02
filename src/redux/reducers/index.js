@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import { roomConditionReducer } from './reducers'
+import { roomConditionReducer, acSettingReducer } from './reducers'
 
 const rootReducer = combineReducers({
-    roomConditions: roomConditionReducer
+    roomConditions: roomConditionReducer,
+    acSettings: acSettingReducer
 })
 
 export default rootReducer;

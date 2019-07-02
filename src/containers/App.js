@@ -11,8 +11,8 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-          <Header/>
-            <Body/>
+        <Header />
+        <Body />
       </div>
     </Provider>
   );
