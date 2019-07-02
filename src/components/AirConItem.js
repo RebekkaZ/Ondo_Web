@@ -74,30 +74,13 @@ class AirConItem extends Component {
             })
         });
     }
-
-
-    async componentDidMount() {
-        this.props.actions.loadAcSetting(this.props.id).catch(error => {
-            console.log(error);
-        })
-
-        this.interval = setInterval(() => {
-            this.props.actions.loadRoomCondition(this.props.id).catch(error => {
-                console.log(error);
-            })
-        }, 2000);
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
 }
 
 function mapStateToProps(state, ownProps) {
     var roomCondition = state.roomConditions.find(roomCondition => roomCondition.id === ownProps.id);
     var acSetting = state.acSettings.find(acSetting => acSetting.id === ownProps.id);
     return {
-        temperature: roomCondition === undefined ? false : roomCondition.temperature,
+        temperature: roomCondition === undefined ? 0 : roomCondition.temperature,
         humidity: roomCondition === undefined ? 0 : roomCondition.humidity,
         devicePower: acSetting === undefined ? false : acSetting.devicePower,
         targetTemp: acSetting === undefined ? 21 : acSetting.targetTemp,

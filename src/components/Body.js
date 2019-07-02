@@ -7,6 +7,7 @@ import aircondata from '../data.json';
 import { bindActionCreators } from 'redux';
 import * as ondoActions from '../redux/actions/actions'
 import { connect } from 'react-redux'
+import AirConOverview from './AirConOverview';
 
 class Body extends Component {
     constructor(props) {
@@ -21,7 +22,8 @@ class Body extends Component {
                 key={i}>{e.name}
             </Tab>
         }
-        );
+        )
+
 
         let tabsContent = this.aircons.map((e, i) =>
             <TabPanel key={i}>
@@ -31,11 +33,15 @@ class Body extends Component {
         return (
             <div className="Body">
                 <label />
+                
                 <Tabs>
                     <TabList>
+                        <Tab>Overview</Tab>
                         {tabsList}
                     </TabList>
-
+                    <TabPanel>
+                    <AirConOverview aircons={this.aircons} />
+                    </TabPanel>
                     {tabsContent}
                 </Tabs>
 
@@ -44,11 +50,30 @@ class Body extends Component {
     }
 
     async componentDidMount() {
-        this.aircons.map((e, i) =>
-            this.props.actions.loadAcSetting(e.id).catch(error => {
-                console.log(error);
-            }))
 
+        this.aircons.map((e, i) => {
+            return this.props.actions.loadAcSetting(e.id).catch(error => {
+                console.log(error);
+            }),
+                this.props.actions.loadRoomCondition(e.id).catch(error => {
+                    console.log(error);
+                })
+        })
+
+        this.interval = setInterval(() => {
+            this.aircons.map((e, i) => {
+                return this.props.actions.loadAcSetting(e.id).catch(error => {
+                    console.log(error);
+                }),
+                    this.props.actions.loadRoomCondition(e.id).catch(error => {
+                        console.log(error);
+                    })
+            })
+        }, 2000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 }
 
